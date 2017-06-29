@@ -1,0 +1,18 @@
+<div class="container-fluid">
+	<div class="row" style="padding: 15px">
+		{{myPosition}}
+	</div>
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="row" ng-repeat="place in places">
+				<div style="font-size: 24px">{{place}}</div>
+				<span style="color: #aaa">Av. 17 de Agosto, 2391 - Casa Forte, Recife/PE</span>
+				<br><button style="margin-top: 10px" class="btn btn-primary">Adicionar aos favoritos</button>
+				<hr>
+			</div>
+		</div>
+		<div class="col-lg-6" style="padding: 10px">
+			<div id="map"></div>
+		</div>
+	</div>
+</div>
