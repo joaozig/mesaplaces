@@ -1,0 +1,16 @@
+<div class="container-fluid">
+	<div class="row" style="padding: 10px">
+		<div class="col-lg-12">
+			<div class="row" ng-show="!ctrl.isEditProfile">
+				<div style="font-size: 24px">João Ricardo Bastos</div>
+				<span style="color: #aaa">joaoricardobastos@gmail.com</span>
+				<br><button ng-click="ctrl.editProfile()" style="margin-top: 10px" class="btn btn-primary">Editar Dados</button>
+			</div>
+			<div class="row" ng-show="ctrl.isEditProfile">
+				Nome: <input type="text" class="form-control" name="name" value="João Ricardo Bastos"><br>
+				E-mail: <input type="email" class="form-control" name="email" value="joaoricardobastos@gmail.com"><br>
+				<button ng-click="ctrl.saveProfile()" style="margin-top: 10px" class="btn btn-primary">Salvar Dados</button>
+			</div>
+		</div>
+	</div>
+</div>
