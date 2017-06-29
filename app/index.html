@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="app" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Mesa Places</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+  <link href="http://getbootstrap.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <base href="/">
+</head>
+<body ng-app="app">
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">Você está usando um navegador <strong>muito antigo</strong>. Por favor <a href="http://browsehappy.com/">atualize seu browser</a> para melhorar sua experiência.</p>
+  <![endif]-->
+  
+  <div ui-view></div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmFfM0ZIIlZ4cclIj9GI0SYGeqNEZNYVk&libraries=places"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
+  <script src="app.js"></script>
+  <script src="login/login.js"></script>
+  <script src="resetpassword/resetpassword.js"></script>
+  <script src="signup/signup.js"></script>
+  <script src="places/places.js"></script>
+  <script src="bookmarks/bookmarks.js"></script>
+  <script src="profile/profile.js"></script>
+</body>
+</html>

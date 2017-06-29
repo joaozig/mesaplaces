@@ -1,0 +1,13 @@
+{
+  "name": "mesaplaces",
+  "description": "Mesa Inc. AngularJS project",
+  "version": "1.0.0",
+  "homepage": "http://mesainc.com.br",
+  "license": "MesaInc",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-ui-router": "~1.0.4",
+    "ngGeolocation": ">=0.0.2"
+  }
+}
