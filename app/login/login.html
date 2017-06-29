@@ -3,9 +3,10 @@
         <h2>Mesa Places</h2>
         <h2>Login</h2>
     </div>
-    <form class="form-signin" role="form" ng-submit="ctrl.login()">
-        <input type="email" class="form-control" placeholder="E-mail" required autofocus>
-        <input type="password" class="form-control" placeholder="Senha" required>
+    <form class="form-signin" role="form" ng-submit="ctrl.login(ctrl.user)">
+        <div class="form-error" ng-if="ctrl.isLoginError">E-mail e/ou Senha incorreto(s).</div>
+        <input type="email" class="form-control" placeholder="E-mail" ng-model="ctrl.user.email" required autofocus>
+        <input type="password" class="form-control" placeholder="Senha" ng-model="ctrl.user.password" required>
         <label>
             <a ui-sref="resetpassword">Esqueceu sua senha?</a>
         </label>

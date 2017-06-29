@@ -62,3 +62,12 @@
 .current-place {
   background-color: #eee;
 }
+
+.form-error {
+  color: #fff;
+  background-color: #ff7f7f;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 4px;
+}

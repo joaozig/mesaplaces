@@ -8,10 +8,20 @@ angular.module('app.login', ['ui.router'])
 	});
 }])
 
-.controller('LoginCtrl', ['$state', function($state) {
+.controller('LoginCtrl', ['$state', '$auth', function($state, $auth) {
 	var ctrl = this;
 
-	ctrl.login = function() {
-		$state.go('app.places');
+	/** Properties **/
+	ctrl.isLoginError = false;
+
+	/** Methods */
+	ctrl.login = function(user) {
+		$auth.submitLogin(user)
+			.then(function(response) {
+				$state.go('app.places');
+			})
+			.catch(function(response) {
+				ctrl.isLoginError = true;
+			});
 	}
 }]);

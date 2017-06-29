@@ -14,7 +14,7 @@ angular.module('app', [
 		function($authProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
 
 	$authProvider.configure({
-		apiUrl: 'http://localhost:3000'
+		apiUrl: 'http://localhost:3000/api'
 	});
 
 	$urlRouterProvider.otherwise('/login');
@@ -36,12 +36,18 @@ angular.module('app', [
   //   .hashPrefix('!')
 }])
 
-.controller('AppCtrl', ['$state', '$location', function($state, $location) {
+.controller('AppCtrl', ['$state', '$location', '$auth', function($state, $location, $auth) {
 	var ctrl = this;
 
 	ctrl.location = $location;
 
 	ctrl.logout = function() {
-		$state.go('login');
+		$auth.signOut()
+			.then(function(response) {
+				$state.go('login');
+			})
+			.catch(function(response) {
+				alert('ocorreu um erro ao tentar fazer o logout.');
+			});
 	}
 }]);
