@@ -43,7 +43,8 @@
   border-bottom-left-radius: 0;
 }
 
-.signup input[type="email"] {
+.signup .no-border {
+  margin-bottom: -1px !important;
   border-radius: 0;
 }
 

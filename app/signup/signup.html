@@ -3,10 +3,12 @@
         <h2>Mesa Places</h2>
         <h2>Cadastro</h2>
     </div>
-    <form class="form-signin signup" role="form">
-        <input type="text" class="form-control" placeholder="Nome" required autofocus>
-        <input type="email" class="form-control" placeholder="E-mail" required>
-        <input type="password" class="form-control" placeholder="Senha" required>
+    <form class="form-signin signup" role="form" ng-submit="ctrl.signup(ctrl.user)">
+        <div class="form-error" ng-if="ctrl.isSignupError">Não foi possível criar a conta.</div>
+        <input type="text" class="form-control" placeholder="Nome" ng-model="ctrl.user.name" required autofocus>
+        <input type="email" class="form-control no-border" placeholder="E-mail" ng-model="ctrl.user.email" required>
+        <input type="password" class="form-control no-border" placeholder="Senha" ng-model="ctrl.user.password" required>
+        <input type="password" class="form-control" placeholder="Confirme a Senha" ng-model="ctrl.user.password_confirmation" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Criar conta</button>
     </form>
     <div class="jumbotron">
