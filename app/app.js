@@ -1,5 +1,6 @@
 angular.module('app', [
 	'ui.router',
+	'ng-token-auth',
 	'ngGeolocation',
 	'app.login',
 	'app.resetpassword',
@@ -9,16 +10,27 @@ angular.module('app', [
 	'app.profile'
 ])
 .config(
-	['$stateProvider', '$locationProvider', '$urlRouterProvider',
-		function($stateProvider, $locationProvider, $urlRouterProvider) {
+	['$authProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider',
+		function($authProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
+
+	$authProvider.configure({
+		apiUrl: 'http://localhost:3000'
+	});
+
 	$urlRouterProvider.otherwise('/login');
 
 	$stateProvider.
 		state('app', {
 			abstract: true,
 			templateUrl: 'application.html',
-			controller: 'AppCtrl as appctrl'
+			controller: 'AppCtrl as appctrl',
+			resolve: {
+				auth: function($auth) {
+					return $auth.validateUser();
+				}
+			}
 		});
+
   // $locationProvider
   //   .html5Mode(true)
   //   .hashPrefix('!')
