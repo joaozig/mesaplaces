@@ -63,6 +63,7 @@ agora abra o navegador e acesse [`localhost:8000`][local-app-url].
 ```
 app/                    --> código-fonte da aplicação
   app.css               --> css padrão
+  services              --> serviços da aplicação
   pagina1/                --> representa um componente/pagina do app, com seu template html e lógica javascript
     pagina1.html            --> o template da página
     pagina1.js              --> declaração do módulo, configuração da rota e controller dessa página
