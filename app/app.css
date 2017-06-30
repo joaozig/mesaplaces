@@ -48,9 +48,22 @@
   border-radius: 0;
 }
 
+.loading {
+  padding: 15px;
+  text-align: center !important;
+}
+
 #map {
-  background-color: red;
+  background-color: #DFDFDF;
   height: 500px;
+}
+
+.place-name {
+  font-size: 18px;
+}
+
+.place-address {
+  color: #aaa;
 }
 
 .container-app {
@@ -88,6 +101,7 @@
   padding: 5px;
   text-align: center;
   border-radius: 4px;
+  margin-top: 10px; 
   margin-bottom: 10px; 
 }
 
