@@ -10,7 +10,10 @@
 	<div class="row" ng-show="ctrl.showPlaces">
 		<div class="col-lg-6">
 			<div class="row" ng-repeat="place in ctrl.places">
-				<div><span class="place-name">{{place.name}}</span>&nbsp;&nbsp;<a href="">Adicionar aos favoritos</a></div>
+				<div>
+					<span class="place-name">{{place.name}}</span>&nbsp;&nbsp;
+					<a href="" ng-click="ctrl.addPlaceToBookmarks(place)">Adicionar aos favoritos</a>
+				</div>
 				<span class="place-address">{{place.vicinity}}</span>
 				<hr>
 			</div>

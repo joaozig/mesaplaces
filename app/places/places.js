@@ -8,7 +8,7 @@ angular.module('app.places', ['ui.router', 'ngGeolocation'])
 	});
 }])
 
-.controller('PlacesCtrl', ['$scope', '$geolocation', function($scope, $geolocation) {
+.controller('PlacesCtrl', ['$scope', '$geolocation', 'bookmarksService', function($scope, $geolocation, bookmarksService) {
   var ctrl = this;
 
   /** Attributes **/
@@ -20,11 +20,35 @@ angular.module('app.places', ['ui.router', 'ngGeolocation'])
 
   /** Methods **/
   ctrl.init = init;
+  ctrl.addPlaceToBookmarks = addPlaceToBookmarks;
 
   /** Initialization **/
   ctrl.init();
 
   /**********/
+  function addPlaceToBookmarks(place) {
+    ctrl.showBookmarkLoading = true;
+
+    bookmarksService.addPlace(place)
+      .then(
+        function(response) {
+          var msg;
+          console.log(response)
+          if(response.status) {
+            msg = "'" + response.bookmark.place.name + "' adicionado aos favoritos!";
+          } else {
+            msg = "Não foi possível adicionar o local aos favoritos. :(";
+          }
+          ctrl.showBookmarkLoading = false;
+          alert(msg);
+        },
+        function(error) {
+          ctrl.showBookmarkLoading = false;
+          alert(error);
+        }
+      );
+  }
+
   function init() {
     ctrl.showErrorMessage = false;
     ctrl.showLoading = true;
