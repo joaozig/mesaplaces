@@ -3,7 +3,7 @@
 Projeto desenvolvido em AngularJS para teste de Full-Stack dev na Mesa Inc.
 
 ## Demo
-Para efeitos de demonstração, a aplicação está no Heroku e pode ser acessada pelo link [https://mesaplaces.herokuapp.com/][api-url].
+Para efeitos de demonstração, a aplicação está no Heroku e pode ser acessada pelo link [https://mesaplaces.herokuapp.com/][app-url].
 
 ### API
 A aplicação utiliza o projeto `Mesa Places API` desenvolvido em Rails como API. Você pode saber mais informações sobre a API [clicando aqui][mesaplacesapi]
@@ -76,6 +76,7 @@ app/                    --> código-fonte da aplicação
 
 a estrutura acima é um exemplo e demonstra o padrão de organização seguido no projeto.
 
+[app-url]: https://mesaplaces.herokuapp.com/
 [mesaplacesapi]: https://github.com/joaozig/mesaplaces
 [bower]: http://bower.io/
 [git]: https://git-scm.com/
