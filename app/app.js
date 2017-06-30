@@ -11,7 +11,7 @@ angular.module('app', [
 ])
 
 .constant('CONFIG', {
-	apiUrl: 'http://localhost:3000/api',
+	apiUrl: 'https://mesaplacesapi.herokuapp.com/api',
 	requestErrorMessage: 'Erro na requisição. Por favor, tente novamente.'
 })
 
