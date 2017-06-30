@@ -2,6 +2,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="error-message" ng-if="ctrl.showErrorMessage">{{ctrl.errorMessage}}</div>
+			<div class="success-message" ng-if="ctrl.showSuccessMessage">{{ctrl.successMessage}}</div>
 		</div>
 	</div>
 	<div class="row loading" ng-show="ctrl.showLoading">
@@ -23,17 +24,19 @@
 		<div class="col-lg-6" style="padding: 10px">
 			<div class="row" ng-show="ctrl.currentBookmark">
 				<h4>Deixe sua avaliação</h4>
-				Nota:
-				<span ng-repeat="i in [1, 2, 3, 4, 5]"><input type="radio" ng-model="ctrl.newRating.grade" name="grade" ng-value="i"> {{i}}</span>
-				<br>
-				Comentário:
-				<textarea class="form-control" ng-model="ctrl.newRating.comments" rows="3"></textarea>
-				<br>
-				<button class="btn btn-primary btn-block" ng-click="ctrl.saveNewRating(ctrl.newRating)">Avaliar</button>
+				<form ng-submit="ctrl.saveNewRating(ctrl.newRating)">
+					Nota:
+					<span ng-repeat="i in [1, 2, 3, 4, 5]"><input type="radio" required ng-model="ctrl.newRating.grade" name="grade" ng-value="i"> {{i}}&nbsp;&nbsp;&nbsp;</span>
+					<br>
+					Comentário:
+					<textarea class="form-control" required ng-model="ctrl.newRating.comments" rows="3"></textarea>
+					<br>
+					<button class="btn btn-primary btn-block" type="submit">Avaliar</button>
+				</form>
 				<hr>
 			</div>
 			<div class="row" ng-repeat="rating in ctrl.currentBookmark.place.ratings">
-				<div style="font-size: 16px">{{rating.name}}</div>
+				<div style="font-size: 16px">{{rating.user.name}}</div>
 				<span style="color: #aaa">
 					Nota: {{rating.grade}}
 					<br> {{rating.comments}}

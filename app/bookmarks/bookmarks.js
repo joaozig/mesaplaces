@@ -8,7 +8,7 @@ angular.module('app.bookmarks', ['ui.router'])
 	});
 }])
 
-.controller('BookmarksCtrl', ['bookmarksService', function(bookmarksService) {
+.controller('BookmarksCtrl', ['bookmarksService', 'ratingService', function(bookmarksService, ratingService) {
 	var ctrl = this;
 
 	/** Attributes **/
@@ -18,6 +18,8 @@ angular.module('app.bookmarks', ['ui.router'])
 	ctrl.showLoading = true;
   ctrl.showErrorMessage = false;
   ctrl.errorMessage;
+  ctrl.showSuccessMessage = false;
+  ctrl.successMessage;
 
   /** Methods **/
   ctrl.setCurrentBookmark = setCurrentBookmark;
@@ -32,30 +34,42 @@ angular.module('app.bookmarks', ['ui.router'])
   		.then(
   			function(response) {
   				ctrl.showLoading = false;
-
-  				console.log(response);
   				ctrl.bookmarks = response;
   			},
   			function(error) {
   				ctrl.showLoading = false;
   				ctrl.showErrorMessage = true;
   				ctrl.errorMessage = error;
-					console.log(error);
   			}
   		);
   }
 
 	function setCurrentBookmark(bookmark) {
+		ctrl.showErrorMessage = false;
+		ctrl.showSuccessMessage = false;
 		ctrl.currentBookmark = bookmark;
 	}
 
 	function saveNewRating(rating) {
-		var newRating = {
-			name: 'Nome do usuário',
-			grade: rating.grade,
-			comments: rating.comments
-		};
+		rating.place_id = ctrl.currentBookmark.place.id;
+		ctrl.showErrorMessage = false;
 
-		ctrl.currentPlace.ratings.unshift(newRating);
+		ratingService.addRating(rating)
+			.then(
+				function(response) {
+					if(response.status) {
+						ctrl.currentBookmark.place.ratings.unshift(response.rating);
+						ctrl.showSuccessMessage = true;
+						ctrl.successMessage = 'Avaliação realizada com sucesso!'
+					} else {
+						ctrl.showErrorMessage = true;
+						ctrl.errorMessage = 'Não foi possível salvar a avaliação.'
+					}
+				},
+				function(error) {
+					ctrl.showErrorMessage = true;
+					ctrl.errorMessage = error;
+				}
+			);
 	}
 }]);
