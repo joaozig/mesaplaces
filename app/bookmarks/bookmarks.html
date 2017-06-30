@@ -1,19 +1,27 @@
 <div class="container-fluid">
 	<div class="row">
+		<div class="col-lg-12">
+			<div class="error-message" ng-if="ctrl.showErrorMessage">{{ctrl.errorMessage}}</div>
+		</div>
+	</div>
+	<div class="row loading" ng-show="ctrl.showLoading">
+		<h2>Carregando...</h2>
+	</div>
+	<div class="row" ng-show="ctrl.bookmarks">
 		<div class="col-lg-6" style="padding: 10px">
 			<div
-				ng-class="{'current-place': place == ctrl.currentPlace}"
+				ng-class="{'current-bookmark': bookmark == ctrl.currentBookmark}"
 				class="row"
-				ng-repeat="place in ctrl.places"
-				ng-click="ctrl.setCurrentPlace(place)" style="margin: 0 10px; padding: 10px">
+				ng-repeat="bookmark in ctrl.bookmarks"
+				ng-click="ctrl.setCurrentBookmark(bookmark)" style="margin: 0 10px; padding: 10px">
 
-				<div style="font-size: 24px">{{place.name}}</div>
-				<span style="color: #aaa">Av. 17 de Agosto, 2391 - Casa Forte, Recife/PE</span>
+				<div style="font-size: 24px">{{bookmark.place.name}}</div>
+				<span style="color: #aaa">{{bookmark.place.vicinity}}</span>
 				<hr>
 			</div>
 		</div>
 		<div class="col-lg-6" style="padding: 10px">
-			<div class="row" ng-show="ctrl.currentPlace">
+			<div class="row" ng-show="ctrl.currentBookmark">
 				<h4>Deixe sua avaliação</h4>
 				Nota:
 				<span ng-repeat="i in [1, 2, 3, 4, 5]"><input type="radio" ng-model="ctrl.newRating.grade" name="grade" ng-value="i"> {{i}}</span>
@@ -24,7 +32,7 @@
 				<button class="btn btn-primary btn-block" ng-click="ctrl.saveNewRating(ctrl.newRating)">Avaliar</button>
 				<hr>
 			</div>
-			<div class="row" ng-repeat="rating in ctrl.currentPlace.ratings">
+			<div class="row" ng-repeat="rating in ctrl.currentBookmark.place.ratings">
 				<div style="font-size: 16px">{{rating.name}}</div>
 				<span style="color: #aaa">
 					Nota: {{rating.grade}}

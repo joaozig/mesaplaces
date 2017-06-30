@@ -8,42 +8,54 @@ angular.module('app.bookmarks', ['ui.router'])
 	});
 }])
 
-.controller('BookmarksCtrl', [function() {
+.controller('BookmarksCtrl', ['bookmarksService', function(bookmarksService) {
 	var ctrl = this;
 
-	ctrl.currentPlace;
+	/** Attributes **/
+	ctrl.bookmarks;	
+	ctrl.currentBookmark;
 	ctrl.newRating;
+	ctrl.showLoading = true;
+  ctrl.showErrorMessage = false;
+  ctrl.errorMessage;
 
-	ctrl.places = [
-		{
-			name: 'Place 1',
-			ratings: [
-				{name: 'João Ricardo', grade: 4, comments: 'Teste teste teste teste teste teste'},
-				{name: 'José Ricardo', grade: 3, comments: 'Teste teste2 teste 3'},
-				{name: 'Raquel Holanda', grade: 2, comments: 'Lorem ipsum dolor sit amet.'}
-			]
-		},
-		{
-			name: 'Place 2',
-			ratings: [
-				{name: 'Pedro Pedro', grade: 3, comments: 'Teste teste teste teste teste teste'},
-				{name: 'Maria Maria', grade: 5, comments: 'Lorem ipsum dolor sit amet.'}
-			]
-		}
-	];
+  /** Methods **/
+  ctrl.setCurrentBookmark = setCurrentBookmark;
+  ctrl.saveNewRating = saveNewRating;
 
-	ctrl.setCurrentPlace = function(place) {
-		ctrl.currentPlace = place;
+  /** Initialization **/
+  init();
+
+  /***********/
+  function init() {
+  	bookmarksService.getBookmarks()
+  		.then(
+  			function(response) {
+  				ctrl.showLoading = false;
+
+  				console.log(response);
+  				ctrl.bookmarks = response;
+  			},
+  			function(error) {
+  				ctrl.showLoading = false;
+  				ctrl.showErrorMessage = true;
+  				ctrl.errorMessage = error;
+					console.log(error);
+  			}
+  		);
+  }
+
+	function setCurrentBookmark(bookmark) {
+		ctrl.currentBookmark = bookmark;
 	}
 
-	ctrl.saveNewRating = function(rating) {
+	function saveNewRating(rating) {
 		var newRating = {
 			name: 'Nome do usuário',
 			grade: rating.grade,
 			comments: rating.comments
 		};
 
-		console.log(newRating);
 		ctrl.currentPlace.ratings.unshift(newRating);
 	}
 }]);
