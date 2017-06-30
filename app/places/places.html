@@ -1,10 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="error-message" ng-if="ctrl.showErrorMessage">
-				{{ctrl.errorMessage}}
-				<a href="" ng-click="ctrl.init()">Tentar novamente</a>
-			</div>
+			<div class="error-message" ng-if="ctrl.showErrorMessage">{{ctrl.errorMessage}}</div>
 		</div>
 	</div>
 	<div class="row loading" ng-show="ctrl.showLoading">
