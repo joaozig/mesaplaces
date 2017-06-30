@@ -9,12 +9,18 @@ angular.module('app', [
 	'app.bookmarks',
 	'app.profile'
 ])
+
+.constant('CONFIG', {
+	apiUrl: 'http://localhost:3000/api',
+	requestErrorMessage: 'Erro na requisição. Por favor, tente novamente.'
+})
+
 .config(
-	['$authProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider',
-		function($authProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
+	['$authProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider', 'CONFIG',
+		function($authProvider, $stateProvider, $locationProvider, $urlRouterProvider, CONFIG) {
 
 	$authProvider.configure({
-		apiUrl: 'http://localhost:3000/api'
+		apiUrl: CONFIG.apiUrl
 	});
 
 	$urlRouterProvider.otherwise('/login');
