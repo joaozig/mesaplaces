@@ -20,7 +20,11 @@ angular.module('app', [
 		function($authProvider, $stateProvider, $locationProvider, $urlRouterProvider, CONFIG) {
 
 	$authProvider.configure({
-		apiUrl: CONFIG.apiUrl
+		apiUrl: CONFIG.apiUrl,
+    omniauthWindowType: 'newWindow',
+    authProviderPaths: {
+      facebook: '/auth/facebook'
+    }
 	});
 
 	$urlRouterProvider.otherwise('/login');
